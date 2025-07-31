@@ -92,8 +92,7 @@ mvn spring-boot:run
 http://localhost:8080/
 
 👨‍💻 Author
-Sagar Satyarthi Mishra
-LinkedIn: @sagar-satyarthi-mishra
+Sagar Satyarthi Mishra    LinkedIn: @sagar-satyarthi-mishra
 
 📃 License
 This project is open source and available under the MIT License.
