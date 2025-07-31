@@ -37,7 +37,7 @@ Displays all saved blog posts in a tabular format.
 ### ➕ Create New Blog Post
 A form to add a new blog post with title, author, and content.
 
-![New Post](images/new_post.png)
+![New Post](images/delete_post.png)
 
 ---
 
