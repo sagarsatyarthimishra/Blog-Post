@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog Posts</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+        }
+
+        h2, h5 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a.button {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .input-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input[type="number"] {
+            padding: 8px 12px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #28a745;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        button.delete {
+            background-color: #dc3545;
+        }
+
+        button.delete:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            table, th, td {
+                font-size: 14px;
+            }
+
+            input, button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>All Blog Posts</h2>
+    <a href="/new" class="button">Add New Post</a>
+
+    <div class="input-section">
+        <h5>Update or Delete a Post by ID</h5>
+        <input type="number" id="postIdInput" placeholder="Enter Post ID">
+        <br>
+        <button onclick="editPost()">Edit Post</button>
+        <button class="delete" onclick="deletePost()">Delete Post</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Content</th>
+        </tr>
+        <tr th:each="post : ${listPosts}">
+            <td th:text="${post.title}">Post Title</td>
+            <td th:text="${post.author}">Author</td>
+            <td th:text="${post.content}">Content</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function editPost() {
+        const id = document.getElementById("postIdInput").value;
+        if (id && id > 0) {
+            window.location.href = "/edit/" + id;
+        } else {
+            alert("Please enter a valid Post ID");
+        }
+    }
+
+    function deletePost() {
+        const id = document.getElementById("postIdInput").value;
+        if (id && id > 0) {
+            if (confirm("Are you sure you want to delete this post?")) {
+                window.location.href = "/delete/" + id;
+            }
+        } else {
+            alert("Please enter a valid Post ID");
+        }
+    }
+</script>
+</body>
+</html>
